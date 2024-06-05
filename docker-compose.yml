@@ -1,0 +1,38 @@
+version: '3'
+
+services:
+
+    postgres:
+      image: postgres:latest
+      ports:
+        - 5432:5432
+      volumes:
+        - postgres_data:/var/lib/postgresql
+      environment:
+        - POSTGRES_USER=postgres
+        - POSTGRES_PASSWORD=Chandra@123
+        - POSTGRES_DB=nestJS
+        - POSTGRES_HOST_AUTH_METHOD=trust
+      restart: "on-failure"
+      networks:
+        - nextJSNetwork
+  
+    pgadmin:
+      image: dpage/pgadmin4
+      container_name: pgadmin
+      environment:
+        - PGADMIN_DEFAULT_EMAIL=admin@gmail.com
+        - PGADMIN_DEFAULT_PASSWORD=admin123
+      ports:
+        - 5050:80
+      depends_on:
+        - postgres
+      networks:
+        - nextJSNetwork
+
+networks:
+  nextJSNetwork:
+    driver: bridge
+
+volumes:
+  postgres_data:
