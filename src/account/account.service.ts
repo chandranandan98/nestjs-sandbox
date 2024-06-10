@@ -1,5 +1,5 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
-import { RegisterUserDto, RegisterUserResponseDto } from 'src/account/dto/user.dto';
+import { RegisterUserDto, RegisterUserResponseDto, UsersResponseDto } from 'src/account/dto/user.dto';
 import { PasswordService } from 'src/services/password.service';
 import { PrismaService } from 'src/services/prisma.service';
 
@@ -33,6 +33,11 @@ export class AccountService {
                 lastName: userDto.lastName,
             },
         });
+    }
+
+    async getAllUser(): Promise<UsersResponseDto[]>{
+        const users = await this.prisma.user.findMany();
+        return users
     }
     
 }

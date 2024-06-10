@@ -31,3 +31,21 @@ export class RegisterUserResponseDto {
     @Expose()
     email: string;
 }
+
+export class UsersResponseDto {
+
+    @Expose()
+    id: number;
+
+    @Expose()
+    email: string;
+
+    @Expose()
+    firstName: string;
+
+    @Expose()
+    lastName: string;
+
+    @Expose()
+    isActive: boolean;
+}
