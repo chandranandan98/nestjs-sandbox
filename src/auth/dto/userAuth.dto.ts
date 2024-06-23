@@ -2,7 +2,7 @@ import { ApiProperty } from '@nestjs/swagger';
 import { Expose } from 'class-transformer';
 import { IsEmail, IsNotEmpty, MinLength } from 'class-validator';
 
-export class RegisterUserDto {
+export class SignUpDto {
 
     @IsEmail()
     @IsNotEmpty()
@@ -24,7 +24,8 @@ export class RegisterUserDto {
     password: string;
 }
 
-export class RegisterUserResponseDto {
+export class SignUpResponseDto {
+    
     @Expose()
     id: number;
 
@@ -32,20 +33,12 @@ export class RegisterUserResponseDto {
     email: string;
 }
 
-export class UsersResponseDto {
+export class LoginDto {
 
-    @Expose()
-    id: number;
-
-    @Expose()
+    @IsEmail()
+    @IsNotEmpty()
     email: string;
 
-    @Expose()
-    firstName: string;
-
-    @Expose()
-    lastName: string;
-
-    @Expose()
-    isActive: boolean;
+    @IsNotEmpty()
+    password: string;
 }
